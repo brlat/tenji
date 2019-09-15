@@ -1,29 +1,38 @@
-漢字の点字表現「六点漢字／日本語点字体系」と点字アプリケーション  
+## rokutenkanji.jsの変更
 
-# 六点漢字 日本語点字体系
-TXT表記  
-https://github.com/code4sabae/tenji/tree/master/data  
-JSON  
-https://github.com/code4sabae/tenji/tree/master/rokutenkanji.js  
+これはフォーク元の [code4sabae/tenji](https://github.com/code4sabae/tenji) のrokutenkanji.jsを変更したものです。
 
-# 日本語点字体系 アプリケーション
-点字変換webアプリ  
-https://code4sabae.github.io/tenji/converter-jp.html  
+テキストデータをUnicode点字の六点漢字に変換することで、点字ディスプレイを使用して、指で触れて漢字の点字での読書が楽しめるようにするために変更しました。
 
-# 日本語点字体系 ライセンス  
-CC BY 長谷川貞夫(Sadao Hasegawa)  
-http://ubq-brl.at.webry.info/  
+Unicode点字は、スクリーンリーダーNVDAと対応する点字ディスプレイ、iOSのVoiceOverと対応する点字ディスプレイなどで表示して、指で触れて読むことができます。
 
-# special thanks (敬称略)
-FCC代表 浅井直湖(Naoko Asai)  
-https://fcc-cheer.jimdo.com/  
-東京大学大学院 情報学環・学際情報学府 – 越塚登  
-http://www.iii.u-tokyo.ac.jp/faculty/koshizuka_noboru  
-Code for Nerima  
-http://code4nerima.org/  
+PC-TalkerはUnicode点字の表示に対応していませんが、PC-Talker自体で六点漢字を点字ディスプレイに表示することができます。
 
-# see also
-六点漢字の自叙伝  
-http://www5f.biglobe.ne.jp/~telspt/txt6ten.html  
-漢字を点字で表す方法「六点漢字」日本語点字体系オープンデータと点字変換アプリ / 福野泰介の一日一創  
-http://fukuno.jig.jp/2145  
+変更点は下記の通り:
+
+* 「ぇ」を「45, 124」に修正
+* 「ぉ」を追加
+
+* 数字の前に数符の「3456」の点を追加(数字が連続するときにも1文字ずつ数府が付く)
+* アルファベットの前に外字符の「56」の点を追加(連続するときにも1文字ずつ付く)
+
+* カタカナを追加して、前に「6, 36」の点を追加(カタカナ1文字ずつその前に6, 36の点が付き、終わりを示す23の点は付けていない)
+
+句読点の後にマスあけができないので、読みやすいように点字の符号を変更。
+
+* 。(256の点)→5, 23の点
+* 、(56の点)→5, 2の点
+* ・(5の点)→6, 2の点
+* ?(26の点)→5, 3の点
+* !(235の点)→56, 2の点
+* 「」(56, 3の点と6, 23の点)→56, 36の点と36, 23の点
+* 『』(56, 36の点と36, 23の点)→56, 36, 3の点と6, 36, 23の点
+
+
+## できれば修正したいこと
+
+1. カタカナが連続するとき、始まりに6, 36の点、終わりに23の点で囲む形にする。
+2. アルファベットが連続する場合、最初のアルファベットの前だけに外字符を付けて、終わりはマスあけにする。
+3. 数字が連続する場合、始まりの前だけに数符を付けて、終わりはマスあけにする。
+4. 句読点(。、？！)の後にマスあけをする。
+
